@@ -55,7 +55,11 @@ internal class Program
                     emp.Deptno=Convert.ToInt32(Console.ReadLine());
                     employeeService.NewEmployee(emp);
                     break;
-                case 2: break;
+                case 2:
+                    Console.WriteLine("Enter EmployeeID");
+                    int empid = Convert.ToInt32(Console.ReadLine());
+                    employeeService.DeleteEmployee(empid);
+                    break;
                 case 3:
                     Console.WriteLine("Enter EmployeeID");
                     int empid = Convert.ToInt32(Console.ReadLine());
@@ -68,7 +72,16 @@ internal class Program
 
                     employeeService.UpdateEmployeeData(empid, emptoUpdate); 
                     break;
-                case 4: break;
+                case 4:
+
+                    Console.WriteLine("Enter EmployeeID");
+                     empid = Convert.ToInt32(Console.ReadLine());
+
+                    Employee empdata=employeeService.FindEmployee(empid);
+                    Console.WriteLine(empdata.Empid);
+                    Console.WriteLine(empdata.EmpName);
+                    Console.WriteLine(empdata.Deptno);
+                    break;
                 case 5:
                     List<Employee> allemps=employeeService.GetAllEmpList();
                     foreach (var item in allemps)
@@ -77,7 +90,9 @@ internal class Program
 
                     }
                     break;
-                case 6: break;
+                case 6:
+                    Environment.Exit(1);
+                    break;
 
             }
             Console.WriteLine("Do u want to continue");
