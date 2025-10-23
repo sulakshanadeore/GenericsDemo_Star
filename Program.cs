@@ -37,7 +37,7 @@ internal class Program
         char ans = 'Y';
         EmployeeService employeeService = new EmployeeService();
 
-        Console.WriteLine("1.Add \n2.Remove \n3.Update \n4.Find \n5.ShowAll \n6.Exit");
+        Console.WriteLine("1.Add \n2.Remove \n3.Update \n4.Find \n5.ShowAll \n6.Find By Name \n7.FirstMatch \n10.Exit");
         
         while (ans=='Y')
         {
@@ -45,6 +45,13 @@ internal class Program
             int choice=Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
+                case 7:
+                    Console.WriteLine("Enter the name to find");
+                    string name = Console.ReadLine();
+                    Employee edata = employeeService.FindFirstMatch(name);
+                        Console.WriteLine(edata.Empid + " " + edata.EmpName);
+
+                    break;
                 case 1:
                     Employee emp=new Employee();
                     Console.WriteLine("Enter EmployeeID");
@@ -62,7 +69,7 @@ internal class Program
                     break;
                 case 3:
                     Console.WriteLine("Enter EmployeeID");
-                    int empid = Convert.ToInt32(Console.ReadLine());
+                     empid = Convert.ToInt32(Console.ReadLine());
 
                     Employee emptoUpdate=new Employee();
                     Console.WriteLine("Enter Name");
@@ -90,7 +97,17 @@ internal class Program
 
                     }
                     break;
-                case 6:
+                    case 6:
+                    Console.WriteLine("Enter the name to find");
+                    string nameToFind=Console.ReadLine();
+                   List<Employee> sameNameEmps=employeeService.FindAllEmployeesWithSameName(nameToFind);
+                    foreach (var item in sameNameEmps)
+                    {
+                        Console.WriteLine(item.Empid + "  "  +item.EmpName);
+                    }
+
+                    break;
+                case 10:
                     Environment.Exit(1);
                     break;
 
