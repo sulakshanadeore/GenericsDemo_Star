@@ -28,7 +28,17 @@
         }
 
         public void DeleteEmployee(int empid)
-        { 
+        {
+            Employee obj = empList.Find(item => item.Empid == empid);
+            if (obj != null)
+            {
+                empList.Remove(obj);
+            }
+            else
+            {
+                Console.WriteLine($"Not found employeeid= {empid}");
+            }
+
         }
 
         public void UpdateEmployeeData(int empid, Employee emp)
@@ -46,9 +56,14 @@
             }
         
         }
-        //public Employee FindEmployee(int empid) { 
-        
-        //}
+        public Employee FindEmployee(int empid) {
+            Employee obj = empList.Find(item => item.Empid == empid);
+            if (obj != null)
+            {
+                return obj;
+            }
+            else { Console.WriteLine("not found..."); }
+        }
 
     
     }
