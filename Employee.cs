@@ -11,9 +11,37 @@
 
         static List<Employee> empList = new List<Employee>() {
          new Employee{Empid=100,EmpName="Tim",Deptno=10 },
-        new Employee{ Empid=101,EmpName="Sim",Deptno=20},
-        new Employee{ Empid=102,EmpName="Gill",Deptno=30}
+        new Employee{ Empid=101,EmpName="Tim",Deptno=20},
+        new Employee{ Empid=102,EmpName="Tim",Deptno=30},
+        new Employee{ Empid=103,EmpName="Jack",Deptno=30},
+        new Employee{ Empid=104,EmpName="Jill",Deptno=30}
+
          };
+
+        public Employee FindFirstMatch(string name)
+        {
+            Employee firstmatch = empList.FindAll(item => item.EmpName == name).FirstOrDefault();
+
+            //IEnumerable<Employee> firstmatch = empList.FindAll(item => item.EmpName == name).Skip(1).Take(1);
+            //Employee empSingle=firstmatch.Single();
+
+            Employee firstmatch = empList.FindAll(item => item.EmpName == name).Skip(1).Take(1).Single();
+           
+
+
+            return firstmatch;
+
+        }
+
+
+        public List<Employee> FindAllEmployeesWithSameName(string name)
+        { 
+            List<Employee> matchingnames=empList.FindAll(item=>item.EmpName==name);
+            return matchingnames;
+        
+        
+        }
+
 
         public void NewEmployee(Employee employee) { 
         empList.Add(employee);  
@@ -63,6 +91,7 @@
                 return obj;
             }
             else { Console.WriteLine("not found..."); }
+            return null;
         }
 
     
